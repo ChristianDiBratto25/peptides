@@ -9,6 +9,7 @@ import { DefaultMedicalDisclaimer } from '@/components/public/DisclaimerBanner'
 import RelatedEntities from '@/components/public/RelatedEntities'
 import PeptideCard from '@/components/public/PeptideCard'
 import PageContent from '@/components/public/PageContent'
+import Link from 'next/link'
 import type { Peptide, FAQ } from '@/lib/types'
 import type { Metadata } from 'next'
 
@@ -45,13 +46,21 @@ export default async function GoalPage({ params }: Props) {
 
   if (!goal) notFound()
 
-  const [peptidesRes, pageRes] = await Promise.all([
+  const [peptidesRes, pageRes, learnPagesRes] = await Promise.all([
     supabase.from('peptide_goals').select('peptide:peptides(*)').eq('goal_id', goal.id),
     supabase.from('pages').select('*').eq('slug', slug).eq('page_type', 'goal').eq('status', 'published').single(),
+    supabase
+      .from('pages')
+      .select('slug, title, meta_description')
+      .eq('page_type', 'learn')
+      .eq('status', 'published')
+      .order('title')
+      .limit(5),
   ])
 
   const peptides = (peptidesRes.data || []).map((r: Record<string, unknown>) => r.peptide).filter(Boolean) as Peptide[]
   const page = pageRes.data
+  const learnPages = learnPagesRes.data || []
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let faqs: any[] = []
@@ -66,6 +75,15 @@ export default async function GoalPage({ params }: Props) {
     faqs = faqRes.data || []
     pageSources = sourceRes.data || []
   }
+
+  // City links for internal linking
+  const cityLinks = [
+    { name: 'Miami', slug: 'miami', href: '/clinics/city/miami' },
+    { name: 'New York', slug: 'new-york', href: '/clinics/city/new-york' },
+    { name: 'Los Angeles', slug: 'los-angeles', href: '/clinics/city/los-angeles' },
+    { name: 'Austin', slug: 'austin', href: '/clinics/city/austin' },
+    { name: 'Scottsdale', slug: 'scottsdale', href: '/clinics/city/scottsdale' },
+  ]
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
@@ -105,8 +123,36 @@ export default async function GoalPage({ params }: Props) {
         </section>
       )}
 
+      {/* Find Clinics */}
+      <section className="mt-12">
+        <h2 className="font-serif text-xl text-gray-900 mb-5">Find Peptide Clinics</h2>
+        <div className="flex flex-wrap gap-2">
+          {cityLinks.map((city) => (
+            <Link
+              key={city.slug}
+              href={city.href}
+              className="px-4 py-2 border border-gray-100 rounded-full text-[13px] text-gray-500 hover:bg-[#f3ecfe] hover:border-[#7f21f6]/30 hover:text-[#7f21f6] transition-all duration-200"
+            >
+              {city.name}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Further Reading */}
+      <RelatedEntities
+        title="Further Reading"
+        items={learnPages.map((p) => ({ name: p.title, slug: p.slug, href: `/learn/${p.slug}`, description: p.meta_description }))}
+      />
+
       <FaqSection faqs={faqs} />
       <CitationList sources={pageSources} />
+
+      {page?.last_reviewed_at && (
+        <p className="text-xs text-gray-400 mt-8">
+          Last reviewed: {new Date(page.last_reviewed_at).toLocaleDateString()}
+        </p>
+      )}
     </div>
   )
 }

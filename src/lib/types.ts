@@ -1,6 +1,6 @@
 export type EntityStatus = 'draft' | 'published' | 'archived'
 export type PageStatus = 'draft' | 'review' | 'published' | 'archived'
-export type PageType = 'peptide' | 'clinic' | 'goal' | 'learn' | 'compare' | 'city'
+export type PageType = 'peptide' | 'clinic' | 'goal' | 'learn' | 'compare' | 'city' | 'legal'
 export type LegalStatus = 'legal' | 'restricted' | 'banned' | 'prescription_only' | 'unknown'
 export type SourceType = 'study' | 'fda' | 'article' | 'government' | 'book' | 'other'
 export type UserRole = 'admin' | 'editor' | 'viewer'

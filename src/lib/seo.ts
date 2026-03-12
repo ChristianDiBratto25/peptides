@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://peptidedirectory.com'
-const SITE_NAME = 'PeptideDirectory'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://peptideindex.io'
+const SITE_NAME = 'Peptide Index'
 
 export function buildMetadata({
   title,

@@ -17,7 +17,7 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: "PeptideDirectory — Your Guide to Peptide Therapy",
+    default: "Peptide Index — Your Guide to Peptide Therapy",
     template: "%s",
   },
   description:

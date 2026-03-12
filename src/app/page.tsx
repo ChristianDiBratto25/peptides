@@ -108,7 +108,7 @@ export default async function HomePage() {
         <div className="bg-gray-50/80 border border-gray-100 rounded-xl p-6 text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-400 mb-2">Educational Content Only</p>
           <p className="text-[13px] text-gray-400 leading-relaxed">
-            PeptideDirectory provides educational and informational content only.
+            Peptide Index provides educational and informational content only.
             Nothing on this site constitutes medical advice. Always consult a qualified healthcare provider before starting any treatment.
           </p>
         </div>

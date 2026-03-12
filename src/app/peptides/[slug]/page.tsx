@@ -21,7 +21,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { data: peptide } = await supabase.from('peptides').select('name, summary').eq('slug', slug).eq('status', 'published').single()
   if (!peptide) return {}
 
-  // Check for a page with more specific SEO data
   const { data: page } = await supabase.from('pages').select('title, meta_description, noindex, canonical_url').eq('slug', slug).eq('page_type', 'peptide').eq('status', 'published').single()
 
   return buildMetadata({
@@ -47,7 +46,7 @@ export default async function PeptidePage({ params }: Props) {
   if (!peptide) notFound()
 
   // Fetch related data in parallel
-  const [goalsRes, jurisdictionsRes, pageRes] = await Promise.all([
+  const [goalsRes, jurisdictionsRes, pageRes, learnPagesRes] = await Promise.all([
     supabase
       .from('peptide_goals')
       .select('goal:goals(*)')
@@ -63,11 +62,19 @@ export default async function PeptidePage({ params }: Props) {
       .eq('page_type', 'peptide')
       .eq('status', 'published')
       .single(),
+    supabase
+      .from('pages')
+      .select('slug, title, meta_description')
+      .eq('page_type', 'learn')
+      .eq('status', 'published')
+      .order('title')
+      .limit(5),
   ])
 
   const goals = (goalsRes.data || []).map((r: Record<string, unknown>) => r.goal).filter(Boolean) as { id: string; name: string; slug: string; description: string | null }[]
   const jurisdictions = jurisdictionsRes.data || []
   const page = pageRes.data
+  const learnPages = learnPagesRes.data || []
 
   // Fetch page-specific data if page exists
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -202,6 +209,12 @@ export default async function PeptidePage({ params }: Props) {
       <RelatedEntities
         title="Clinics Offering This Peptide"
         items={relatedClinics.map((c) => ({ name: c.name, slug: c.slug, href: `/clinics/${c.slug}`, description: c.description }))}
+      />
+
+      {/* Further Reading — Learn pages */}
+      <RelatedEntities
+        title="Further Reading"
+        items={learnPages.map((p) => ({ name: p.title, slug: p.slug, href: `/learn/${p.slug}`, description: p.meta_description }))}
       />
 
       {/* FAQs */}
