@@ -20,19 +20,21 @@ export default async function HomePage() {
   return (
     <PublicLayout>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Your Guide to Peptide Therapy
+      <section className="relative overflow-hidden bg-white">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#f3ecfe] via-white to-white" />
+        <div className="relative max-w-4xl mx-auto px-4 py-24 md:py-32 text-center">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#7f21f6] mb-4">Research-Backed Peptide Intelligence</p>
+          <h1 className="font-serif text-4xl md:text-6xl text-gray-900 mb-5 leading-[1.1]">
+            Your Guide to<br />Peptide Therapy
           </h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-            Research-backed information on peptide compounds, verified clinics, and educational resources — all in one place.
+          <p className="text-[17px] text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed">
+            Verified clinics, educational resources, and research-backed compound profiles — all in one place.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/peptides" className="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link href="/peptides" className="px-7 py-3 bg-[#7f21f6] text-white rounded-lg font-medium text-[15px] hover:bg-[#5a0fc0] shadow-[0_2px_12px_rgba(127,33,246,0.3)] hover:shadow-[0_4px_20px_rgba(127,33,246,0.4)] transition-all duration-200">
               Browse Peptides
             </Link>
-            <Link href="/goals" className="px-6 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition-colors">
+            <Link href="/goals" className="px-7 py-3 border border-gray-200 text-gray-700 rounded-lg font-medium text-[15px] hover:border-[#7f21f6]/40 hover:text-[#7f21f6] transition-all duration-200">
               Explore by Goal
             </Link>
           </div>
@@ -41,11 +43,12 @@ export default async function HomePage() {
 
       {/* Featured Peptides */}
       {peptides.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 py-16">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold">Featured Peptides</h2>
-            <Link href="/peptides" className="text-blue-600 text-sm hover:underline">
-              View All →
+        <section className="max-w-6xl mx-auto px-4 py-20">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="font-serif text-2xl text-gray-900">Featured Peptides</h2>
+            <Link href="/peptides" className="text-[13px] text-[#7f21f6] font-medium hover:text-[#5a0fc0] transition-colors">
+              View All
+              <span className="ml-1">&rarr;</span>
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -58,12 +61,13 @@ export default async function HomePage() {
 
       {/* Goals */}
       {goals.length > 0 && (
-        <section className="bg-gray-50 py-16">
+        <section className="bg-gray-50/60 py-20">
           <div className="max-w-6xl mx-auto px-4">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold">Browse by Goal</h2>
-              <Link href="/goals" className="text-blue-600 text-sm hover:underline">
-                View All →
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-serif text-2xl text-gray-900">Browse by Goal</h2>
+              <Link href="/goals" className="text-[13px] text-[#7f21f6] font-medium hover:text-[#5a0fc0] transition-colors">
+                View All
+                <span className="ml-1">&rarr;</span>
               </Link>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -71,9 +75,9 @@ export default async function HomePage() {
                 <Link
                   key={g.id}
                   href={`/goals/${g.slug}`}
-                  className="bg-white border rounded-lg p-4 text-center hover:shadow-md transition-shadow hover:border-blue-300"
+                  className="group bg-white border border-gray-100 rounded-xl p-5 text-center hover:border-[#7f21f6]/30 hover:shadow-[0_4px_20px_rgba(127,33,246,0.06)] transition-all duration-200"
                 >
-                  <span className="font-medium text-gray-800">{g.name}</span>
+                  <span className="font-medium text-gray-800 group-hover:text-[#7f21f6] transition-colors">{g.name}</span>
                 </Link>
               ))}
             </div>
@@ -83,14 +87,14 @@ export default async function HomePage() {
 
       {/* Cities */}
       {cities.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 py-16">
-          <h2 className="text-2xl font-bold mb-6">Find Clinics by City</h2>
+        <section className="max-w-6xl mx-auto px-4 py-20">
+          <h2 className="font-serif text-2xl text-gray-900 mb-6">Find Clinics by City</h2>
           <div className="flex flex-wrap gap-2">
             {cities.map((city) => (
               <Link
                 key={city}
                 href={`/clinics/city/${city.toLowerCase().replace(/\s+/g, '-')}`}
-                className="px-4 py-2 border rounded-full text-sm text-gray-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-colors"
+                className="px-4 py-2 border border-gray-100 rounded-full text-[13px] text-gray-500 hover:bg-[#f3ecfe] hover:border-[#7f21f6]/30 hover:text-[#7f21f6] transition-all duration-200"
               >
                 {city}
               </Link>
@@ -100,10 +104,10 @@ export default async function HomePage() {
       )}
 
       {/* Disclaimer */}
-      <section className="max-w-4xl mx-auto px-4 py-8">
-        <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 text-sm text-amber-800 text-center">
-          <p className="font-medium mb-1">Educational Content Only</p>
-          <p>
+      <section className="max-w-3xl mx-auto px-4 py-10">
+        <div className="bg-gray-50/80 border border-gray-100 rounded-xl p-6 text-center">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-400 mb-2">Educational Content Only</p>
+          <p className="text-[13px] text-gray-400 leading-relaxed">
             PeptideDirectory provides educational and informational content only.
             Nothing on this site constitutes medical advice. Always consult a qualified healthcare provider before starting any treatment.
           </p>

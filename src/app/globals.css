@@ -2,25 +2,50 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111111;
+  --brand: #7f21f6;
+  --brand-light: #f3ecfe;
+  --brand-dark: #5a0fc0;
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
+  --gray-400: #a3a3a3;
+  --gray-500: #737373;
+  --gray-600: #525252;
+  --gray-700: #404040;
+  --gray-800: #262626;
+  --gray-900: #171717;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-brand: var(--brand);
+  --color-brand-light: var(--brand-light);
+  --color-brand-dark: var(--brand-dark);
+  --font-sans: var(--font-instrument-sans);
+  --font-serif: var(--font-instrument-serif);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-instrument-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* Instrument Serif for headlines */
+.font-serif {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+}
+
+/* Smooth transitions globally */
+a, button {
+  transition: all 0.15s ease;
+}
+
+/* Selection color */
+::selection {
+  background: var(--brand-light);
+  color: var(--brand-dark);
 }

@@ -98,7 +98,7 @@ export default async function PeptidePage({ params }: Props) {
   const relatedClinics = (clinicLinks || []).map((r: Record<string, unknown>) => r.clinic).filter(Boolean) as { id: string; name: string; slug: string; description: string | null }[]
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-12">
       <Breadcrumbs items={[
         { label: 'Peptides', href: '/peptides' },
         { label: peptide.name, href: `/peptides/${slug}` },
@@ -117,33 +117,33 @@ export default async function PeptidePage({ params }: Props) {
         <DefaultMedicalDisclaimer />
       )}
 
-      <h1 className="text-3xl font-bold mb-2">{peptide.name}</h1>
+      <h1 className="font-serif text-3xl md:text-4xl text-gray-900 mb-2">{peptide.name}</h1>
 
       {peptide.alternative_names?.length > 0 && (
-        <p className="text-gray-500 text-sm mb-4">
+        <p className="text-gray-400 text-[13px] mb-4">
           Also known as: {peptide.alternative_names.join(', ')}
         </p>
       )}
 
       {peptide.category && (
-        <span className="inline-block mb-6 px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full">
+        <span className="inline-block mb-8 px-3 py-1 bg-[#f3ecfe] text-[#7f21f6] text-[12px] font-medium rounded-full">
           {peptide.category}
         </span>
       )}
 
       {/* Quick Facts */}
       {(peptide.molecular_weight || peptide.sequence) && (
-        <div className="bg-gray-50 rounded-lg p-4 mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-gray-50/80 border border-gray-100 rounded-xl p-5 mb-10 grid grid-cols-1 md:grid-cols-2 gap-5">
           {peptide.molecular_weight && (
             <div>
-              <span className="text-xs text-gray-500 uppercase tracking-wide">Molecular Weight</span>
-              <p className="font-medium">{peptide.molecular_weight}</p>
+              <span className="text-[11px] text-gray-400 uppercase tracking-[0.1em] font-medium">Molecular Weight</span>
+              <p className="font-medium text-gray-900 mt-0.5">{peptide.molecular_weight}</p>
             </div>
           )}
           {peptide.sequence && (
             <div>
-              <span className="text-xs text-gray-500 uppercase tracking-wide">Sequence</span>
-              <p className="font-mono text-sm">{peptide.sequence}</p>
+              <span className="text-[11px] text-gray-400 uppercase tracking-[0.1em] font-medium">Sequence</span>
+              <p className="font-mono text-[13px] text-gray-700 mt-0.5">{peptide.sequence}</p>
             </div>
           )}
         </div>
@@ -151,7 +151,7 @@ export default async function PeptidePage({ params }: Props) {
 
       {/* Description */}
       {peptide.summary && (
-        <p className="text-lg text-gray-700 leading-relaxed mb-6">{peptide.summary}</p>
+        <p className="text-[17px] text-gray-500 leading-relaxed mb-8">{peptide.summary}</p>
       )}
 
       {/* CMS Page Content */}
@@ -160,30 +160,30 @@ export default async function PeptidePage({ params }: Props) {
       )}
 
       {peptide.description && !page?.content && (
-        <div className="text-gray-700 leading-relaxed whitespace-pre-line">{peptide.description}</div>
+        <div className="text-[15px] text-gray-600 leading-relaxed whitespace-pre-line">{peptide.description}</div>
       )}
 
       {/* Jurisdictions */}
       {jurisdictions.length > 0 && (
-        <section className="mt-8">
-          <h2 className="text-xl font-bold mb-4">Legal Status by Jurisdiction</h2>
-          <div className="border rounded-lg overflow-hidden">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-50">
+        <section className="mt-12">
+          <h2 className="font-serif text-xl text-gray-900 mb-5">Legal Status by Jurisdiction</h2>
+          <div className="border border-gray-100 rounded-xl overflow-hidden">
+            <table className="w-full text-[13px]">
+              <thead className="bg-gray-50/80">
                 <tr>
-                  <th className="text-left px-4 py-2">Country</th>
-                  <th className="text-left px-4 py-2">State/Region</th>
-                  <th className="text-left px-4 py-2">Status</th>
-                  <th className="text-left px-4 py-2">Notes</th>
+                  <th className="text-left px-5 py-3 text-[11px] uppercase tracking-[0.1em] text-gray-400 font-medium">Country</th>
+                  <th className="text-left px-5 py-3 text-[11px] uppercase tracking-[0.1em] text-gray-400 font-medium">State/Region</th>
+                  <th className="text-left px-5 py-3 text-[11px] uppercase tracking-[0.1em] text-gray-400 font-medium">Status</th>
+                  <th className="text-left px-5 py-3 text-[11px] uppercase tracking-[0.1em] text-gray-400 font-medium">Notes</th>
                 </tr>
               </thead>
-              <tbody className="divide-y">
+              <tbody className="divide-y divide-gray-50">
                 {jurisdictions.map((j) => (
                   <tr key={j.id}>
-                    <td className="px-4 py-2">{j.country}</td>
-                    <td className="px-4 py-2">{j.state || '—'}</td>
-                    <td className="px-4 py-2"><Badge status={j.legal_status} /></td>
-                    <td className="px-4 py-2 text-gray-500">{j.notes || '—'}</td>
+                    <td className="px-5 py-3 text-gray-700">{j.country}</td>
+                    <td className="px-5 py-3 text-gray-700">{j.state || '—'}</td>
+                    <td className="px-5 py-3"><Badge status={j.legal_status} /></td>
+                    <td className="px-5 py-3 text-gray-400">{j.notes || '—'}</td>
                   </tr>
                 ))}
               </tbody>

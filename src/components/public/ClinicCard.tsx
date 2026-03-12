@@ -11,25 +11,25 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
   return (
     <Link
       href={`/clinics/${clinic.slug}`}
-      className="block border rounded-lg p-5 hover:shadow-md transition-shadow hover:border-green-300"
+      className="group block bg-white border border-gray-100 rounded-xl p-6 hover:border-[#7f21f6]/30 hover:shadow-[0_4px_20px_rgba(127,33,246,0.06)] transition-all duration-200"
     >
-      <div className="flex items-start justify-between">
-        <div>
-          <h3 className="font-semibold text-lg text-green-700">{clinic.name}</h3>
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h3 className="font-serif text-xl text-gray-900 group-hover:text-[#7f21f6] transition-colors">{clinic.name}</h3>
           {location && (
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-[13px] text-gray-400 mt-1">
               {[location.city, location.state].filter(Boolean).join(', ')}
             </p>
           )}
         </div>
         {clinic.verified && (
-          <span className="px-2 py-0.5 bg-green-100 text-green-800 text-xs rounded-full flex-shrink-0">
+          <span className="flex-shrink-0 inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-50 text-emerald-600 text-[11px] font-semibold uppercase tracking-wide rounded-full border border-emerald-100">
             Verified
           </span>
         )}
       </div>
       {clinic.description && (
-        <p className="text-sm text-gray-600 mt-2 line-clamp-2">{clinic.description}</p>
+        <p className="text-[14px] text-gray-400 mt-3 leading-relaxed line-clamp-2">{clinic.description}</p>
       )}
     </Link>
   )

@@ -34,24 +34,24 @@ export default async function ClinicsListPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-12">
       <Breadcrumbs items={[{ label: 'Clinics', href: '/clinics' }]} />
 
-      <h1 className="text-3xl font-bold mb-2">Peptide Clinics</h1>
-      <p className="text-gray-600 mb-8">
+      <h1 className="font-serif text-3xl md:text-4xl text-gray-900 mb-3">Peptide Clinics</h1>
+      <p className="text-[15px] text-gray-400 mb-10">
         Browse verified peptide therapy clinics.
       </p>
 
       {/* City filter */}
       {cityMap.size > 0 && (
-        <div className="mb-8">
-          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Browse by City</h2>
+        <div className="mb-10">
+          <h2 className="text-[11px] font-semibold text-gray-400 uppercase tracking-[0.15em] mb-3">Browse by City</h2>
           <div className="flex flex-wrap gap-2">
             {[...cityMap.entries()].map(([slug, label]) => (
               <Link
                 key={slug}
                 href={`/clinics/city/${slug}`}
-                className="px-3 py-1.5 border rounded-full text-sm text-gray-700 hover:bg-blue-50 hover:border-blue-300"
+                className="px-3 py-1.5 border border-gray-100 rounded-full text-[13px] text-gray-500 hover:bg-[#f3ecfe] hover:border-[#7f21f6]/30 hover:text-[#7f21f6] transition-all duration-200"
               >
                 {label}
               </Link>
@@ -62,7 +62,7 @@ export default async function ClinicsListPage() {
 
       {/* Clinic list */}
       {!clinics || clinics.length === 0 ? (
-        <div className="bg-gray-50 rounded-lg p-8 text-center text-gray-500">
+        <div className="bg-gray-50/80 border border-gray-100 rounded-xl p-10 text-center text-gray-400">
           No clinics listed yet. Check back soon.
         </div>
       ) : (

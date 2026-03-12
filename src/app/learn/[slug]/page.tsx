@@ -54,7 +54,7 @@ export default async function LearnPage({ params }: Props) {
   const disclaimers = (disclaimerRes.data || []) as Disclaimer[]
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-12">
       <Breadcrumbs items={[
         { label: 'Learn', href: '/learn' },
         { label: page.title, href: `/learn/${slug}` },
@@ -73,7 +73,7 @@ export default async function LearnPage({ params }: Props) {
         <DefaultMedicalDisclaimer />
       )}
 
-      <h1 className="text-3xl font-bold mb-6">{page.title}</h1>
+      <h1 className="font-serif text-3xl md:text-4xl text-gray-900 mb-8">{page.title}</h1>
 
       <PageContent content={page.content} />
 

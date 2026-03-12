@@ -68,7 +68,7 @@ export default async function GoalPage({ params }: Props) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-12">
       <Breadcrumbs items={[
         { label: 'Goals', href: '/goals' },
         { label: goal.name, href: `/goals/${slug}` },
@@ -83,10 +83,10 @@ export default async function GoalPage({ params }: Props) {
 
       <DefaultMedicalDisclaimer />
 
-      <h1 className="text-3xl font-bold mb-4">Peptides for {goal.name}</h1>
+      <h1 className="font-serif text-3xl md:text-4xl text-gray-900 mb-4">Peptides for {goal.name}</h1>
 
       {goal.description && (
-        <p className="text-lg text-gray-700 leading-relaxed mb-8">{goal.description}</p>
+        <p className="text-[17px] text-gray-500 leading-relaxed mb-10">{goal.description}</p>
       )}
 
       {page?.content && Object.keys(page.content).length > 0 && (
@@ -95,8 +95,8 @@ export default async function GoalPage({ params }: Props) {
 
       {/* Related Peptides */}
       {peptides.length > 0 && (
-        <section className="mt-8">
-          <h2 className="text-xl font-bold mb-4">Peptides Studied for {goal.name}</h2>
+        <section className="mt-12">
+          <h2 className="font-serif text-xl text-gray-900 mb-5">Peptides Studied for {goal.name}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {peptides.map((p) => (
               <PeptideCard key={p.id} peptide={p} />

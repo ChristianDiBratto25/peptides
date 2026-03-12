@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/public/Header";
-import Footer from "@/components/public/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -19,7 +20,8 @@ export const metadata: Metadata = {
     default: "PeptideDirectory — Your Guide to Peptide Therapy",
     template: "%s",
   },
-  description: "The comprehensive peptide directory. Find clinics, compare compounds, and explore research-backed information on peptide therapy.",
+  description:
+    "The comprehensive peptide directory. Find clinics, compare compounds, and explore research-backed information on peptide therapy.",
 };
 
 export default function RootLayout({
@@ -30,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${instrumentSans.variable} ${instrumentSerif.variable} antialiased`}
       >
         {children}
       </body>

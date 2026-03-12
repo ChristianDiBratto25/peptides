@@ -73,7 +73,7 @@ export default async function ClinicPage({ params }: Props) {
   const primaryLocation = locations[0]
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-12">
       <Breadcrumbs items={[
         { label: 'Clinics', href: '/clinics' },
         { label: clinic.name, href: `/clinics/${slug}` },
@@ -95,11 +95,11 @@ export default async function ClinicPage({ params }: Props) {
 
       <DefaultMedicalDisclaimer />
 
-      <div className="flex items-start justify-between mb-6">
+      <div className="flex items-start justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold">{clinic.name}</h1>
+          <h1 className="font-serif text-3xl md:text-4xl text-gray-900">{clinic.name}</h1>
           {clinic.verified && (
-            <span className="inline-block mt-2 px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
+            <span className="inline-flex items-center gap-1 mt-3 px-3 py-1 bg-emerald-50 text-emerald-600 text-[11px] font-semibold uppercase tracking-wide rounded-full border border-emerald-100">
               Verified Clinic
             </span>
           )}
@@ -107,33 +107,34 @@ export default async function ClinicPage({ params }: Props) {
       </div>
 
       {/* Contact Info */}
-      <div className="bg-gray-50 rounded-lg p-4 mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-gray-50/80 border border-gray-100 rounded-xl p-5 mb-10 grid grid-cols-1 md:grid-cols-3 gap-5">
         {clinic.phone && (
           <div>
-            <span className="text-xs text-gray-500 uppercase tracking-wide">Phone</span>
-            <p className="font-medium">{clinic.phone}</p>
+            <span className="text-[11px] text-gray-400 uppercase tracking-[0.1em] font-medium">Phone</span>
+            <p className="font-medium text-gray-900 mt-0.5">{clinic.phone}</p>
           </div>
         )}
         {clinic.website && (
           <div>
-            <span className="text-xs text-gray-500 uppercase tracking-wide">Website</span>
-            <p>
-              <a href={clinic.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                Visit Website ↗
+            <span className="text-[11px] text-gray-400 uppercase tracking-[0.1em] font-medium">Website</span>
+            <p className="mt-0.5">
+              <a href={clinic.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[#7f21f6] hover:text-[#5a0fc0] transition-colors">
+                Visit Website
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2h6v6M10 2L4 8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>
               </a>
             </p>
           </div>
         )}
         {clinic.email && (
           <div>
-            <span className="text-xs text-gray-500 uppercase tracking-wide">Email</span>
-            <p className="font-medium">{clinic.email}</p>
+            <span className="text-[11px] text-gray-400 uppercase tracking-[0.1em] font-medium">Email</span>
+            <p className="font-medium text-gray-900 mt-0.5">{clinic.email}</p>
           </div>
         )}
       </div>
 
       {clinic.description && (
-        <p className="text-gray-700 leading-relaxed mb-8">{clinic.description}</p>
+        <p className="text-[15px] text-gray-600 leading-relaxed mb-10">{clinic.description}</p>
       )}
 
       {page?.content && Object.keys(page.content).length > 0 && (
@@ -142,16 +143,16 @@ export default async function ClinicPage({ params }: Props) {
 
       {/* Locations */}
       {locations.length > 0 && (
-        <section className="mt-8">
-          <h2 className="text-xl font-bold mb-4">Locations</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <section className="mt-12">
+          <h2 className="font-serif text-xl text-gray-900 mb-5">Locations</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {locations.map((loc) => (
-              <div key={loc.id} className="border rounded-lg p-4">
-                {loc.address && <p className="font-medium">{loc.address}</p>}
-                <p className="text-gray-600">
+              <div key={loc.id} className="border border-gray-100 rounded-xl p-5">
+                {loc.address && <p className="font-medium text-gray-900">{loc.address}</p>}
+                <p className="text-[13px] text-gray-500 mt-1">
                   {[loc.city, loc.state, loc.zip].filter(Boolean).join(', ')}
                 </p>
-                <p className="text-gray-400 text-sm">{loc.country}</p>
+                <p className="text-gray-300 text-[12px] mt-0.5">{loc.country}</p>
               </div>
             ))}
           </div>
@@ -160,14 +161,14 @@ export default async function ClinicPage({ params }: Props) {
 
       {/* Providers */}
       {providers.length > 0 && (
-        <section className="mt-8">
-          <h2 className="text-xl font-bold mb-4">Providers</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <section className="mt-12">
+          <h2 className="font-serif text-xl text-gray-900 mb-5">Providers</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {providers.map((p) => (
-              <div key={p.id} className="border rounded-lg p-4">
-                <p className="font-semibold">{p.name}</p>
-                {p.credentials && <p className="text-sm text-gray-500">{p.credentials}</p>}
-                {p.title && <p className="text-sm text-gray-500">{p.title}</p>}
+              <div key={p.id} className="border border-gray-100 rounded-xl p-5">
+                <p className="font-medium text-gray-900">{p.name}</p>
+                {p.credentials && <p className="text-[13px] text-gray-400 mt-0.5">{p.credentials}</p>}
+                {p.title && <p className="text-[13px] text-gray-400">{p.title}</p>}
               </div>
             ))}
           </div>

@@ -65,7 +65,7 @@ export default async function ComparePage({ params }: Props) {
   const pageSources = sourceRes.data || []
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-12">
       <Breadcrumbs items={[
         { label: 'Compare', href: '/compare' },
         { label: page.title, href: `/compare/${slug}` },
@@ -80,37 +80,37 @@ export default async function ComparePage({ params }: Props) {
 
       <DefaultMedicalDisclaimer />
 
-      <h1 className="text-3xl font-bold mb-6">{page.title}</h1>
+      <h1 className="font-serif text-3xl md:text-4xl text-gray-900 mb-8">{page.title}</h1>
 
       {/* Quick comparison table if peptides found */}
       {peptides.length >= 2 && (
-        <div className="border rounded-lg overflow-hidden mb-8">
-          <table className="w-full text-sm">
-            <thead className="bg-gray-50">
+        <div className="border border-gray-100 rounded-xl overflow-hidden mb-10">
+          <table className="w-full text-[13px]">
+            <thead className="bg-gray-50/80">
               <tr>
-                <th className="text-left px-4 py-3">Property</th>
+                <th className="text-left px-5 py-3 text-[11px] uppercase tracking-[0.1em] text-gray-400 font-medium">Property</th>
                 {peptides.map((p) => (
-                  <th key={p.id} className="text-left px-4 py-3">{p.name}</th>
+                  <th key={p.id} className="text-left px-5 py-3 font-serif text-[15px] text-gray-900 font-normal">{p.name}</th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y">
+            <tbody className="divide-y divide-gray-50">
               <tr>
-                <td className="px-4 py-3 font-medium">Category</td>
+                <td className="px-5 py-3 font-medium text-gray-700">Category</td>
                 {peptides.map((p) => (
-                  <td key={p.id} className="px-4 py-3">{p.category || '—'}</td>
+                  <td key={p.id} className="px-5 py-3 text-gray-600">{p.category || '—'}</td>
                 ))}
               </tr>
               <tr>
-                <td className="px-4 py-3 font-medium">Molecular Weight</td>
+                <td className="px-5 py-3 font-medium text-gray-700">Molecular Weight</td>
                 {peptides.map((p) => (
-                  <td key={p.id} className="px-4 py-3">{p.molecular_weight || '—'}</td>
+                  <td key={p.id} className="px-5 py-3 text-gray-600">{p.molecular_weight || '—'}</td>
                 ))}
               </tr>
               <tr>
-                <td className="px-4 py-3 font-medium">Sequence</td>
+                <td className="px-5 py-3 font-medium text-gray-700">Sequence</td>
                 {peptides.map((p) => (
-                  <td key={p.id} className="px-4 py-3 font-mono text-xs">{p.sequence || '—'}</td>
+                  <td key={p.id} className="px-5 py-3 font-mono text-[12px] text-gray-500">{p.sequence || '—'}</td>
                 ))}
               </tr>
             </tbody>
