@@ -3,19 +3,6 @@
 -- Run in Supabase SQL Editor (Dashboard > SQL > New Query)
 -- This script is idempotent (safe to run multiple times)
 -- ============================================
-
-BEGIN;
-
--- Add 'legal' to page_type enum if not already present
-DO $$ BEGIN
-  ALTER TYPE page_type ADD VALUE IF NOT EXISTS 'legal';
-EXCEPTION WHEN duplicate_object THEN NULL;
-END $$;
-
-COMMIT;
-BEGIN;
-
--- ============================================
 -- 1. PEPTIDES (5 records)
 -- ============================================
 
@@ -506,12 +493,13 @@ ON CONFLICT (slug, page_type) DO UPDATE SET
 -- 4e. LEGAL PAGE (1)
 -- ============================================
 
-INSERT INTO pages (slug, page_type, title, meta_description, content, status, last_reviewed_at)
+INSERT INTO pages (slug, page_type, title, meta_description, canonical_url, content, status, last_reviewed_at)
 VALUES
 (
-  'peptide-legality-united-states', 'legal',
+  'peptide-legality-united-states', 'learn',
   'Peptide Legality in the United States — What You Need to Know',
   'Understand the legal status of peptides in the United States, including FDA regulations, compounding pharmacy rules, and state-level considerations.',
+  'https://peptideindex.io/legal/peptide-legality-united-states',
   $json${
     "intro": "The legal landscape for peptides in the United States is complex and varies by compound, intended use, and source. Understanding these regulations is important for anyone considering peptide therapy.",
     "sections": [
@@ -530,6 +518,7 @@ VALUES
 ON CONFLICT (slug, page_type) DO UPDATE SET
   title = EXCLUDED.title,
   meta_description = EXCLUDED.meta_description,
+  canonical_url = EXCLUDED.canonical_url,
   content = EXCLUDED.content,
   status = EXCLUDED.status,
   last_reviewed_at = EXCLUDED.last_reviewed_at;
@@ -674,11 +663,8 @@ FROM pages WHERE slug = 'how-to-evaluate-a-peptide-clinic' AND page_type = 'lear
 -- Legal page FAQs
 INSERT INTO faqs (page_id, question, answer, sort_order)
 SELECT id, 'Are peptides legal in the United States?', 'The legality depends on the specific peptide and how it is obtained. FDA-approved peptides are legal with a prescription. Compounded peptides prescribed by licensed physicians are generally legal. Peptides sold as research chemicals exist in a regulatory gray area.', 0
-FROM pages WHERE slug = 'peptide-legality-united-states' AND page_type = 'legal';
+FROM pages WHERE slug = 'peptide-legality-united-states' AND page_type = 'learn';
 
 INSERT INTO faqs (page_id, question, answer, sort_order)
 SELECT id, 'Can my doctor legally prescribe research peptides?', 'Licensed physicians can prescribe compounded medications, including certain peptides, as part of their medical practice. However, the peptides must be obtained from a licensed compounding pharmacy, and the prescribing must be within the scope of a legitimate provider-patient relationship.', 1
-FROM pages WHERE slug = 'peptide-legality-united-states' AND page_type = 'legal';
-
-
-COMMIT;
+FROM pages WHERE slug = 'peptide-legality-united-states' AND page_type = 'learn';

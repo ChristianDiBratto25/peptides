@@ -18,7 +18,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const supabase = await createClient()
-  const { data: page } = await supabase.from('pages').select('title, meta_description, noindex, canonical_url').eq('slug', slug).eq('page_type', 'legal').eq('status', 'published').single()
+  const { data: page } = await supabase.from('pages').select('title, meta_description, noindex, canonical_url').eq('slug', slug).eq('page_type', 'learn').eq('status', 'published').single()
   if (!page) return {}
 
   return buildMetadata({
@@ -38,7 +38,7 @@ export default async function LegalPage({ params }: Props) {
     .from('pages')
     .select('*')
     .eq('slug', slug)
-    .eq('page_type', 'legal')
+    .eq('page_type', 'learn')
     .eq('status', 'published')
     .single()
 

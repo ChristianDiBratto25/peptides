@@ -7,18 +7,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = createAdminClient()
 
   // Fetch all published entities for dynamic pages
-  const [peptidesRes, goalsRes, learnPagesRes, legalPagesRes, cityPagesRes] = await Promise.all([
+  const [peptidesRes, goalsRes, learnPagesRes, cityPagesRes] = await Promise.all([
     supabase.from('peptides').select('slug, updated_at').eq('status', 'published'),
     supabase.from('goals').select('slug, updated_at').eq('status', 'published'),
-    supabase.from('pages').select('slug, updated_at').eq('page_type', 'learn').eq('status', 'published'),
-    supabase.from('pages').select('slug, updated_at').eq('page_type', 'legal').eq('status', 'published'),
+    supabase.from('pages').select('slug, updated_at, canonical_url').eq('page_type', 'learn').eq('status', 'published'),
     supabase.from('pages').select('slug, updated_at').eq('page_type', 'city').eq('status', 'published'),
   ])
 
   const peptides = peptidesRes.data || []
   const goals = goalsRes.data || []
   const learnPages = learnPagesRes.data || []
-  const legalPages = legalPagesRes.data || []
   const cityPages = cityPagesRes.data || []
 
   // Static pages
@@ -54,17 +52,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  // Dynamic learn pages
+  // Dynamic learn pages (includes legal pages stored as page_type='learn' with canonical_url)
   const learnPageUrls: MetadataRoute.Sitemap = learnPages.map((p) => ({
-    url: `${SITE_URL}/learn/${p.slug}`,
-    lastModified: new Date(p.updated_at),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }))
-
-  // Dynamic legal pages
-  const legalPageUrls: MetadataRoute.Sitemap = legalPages.map((p) => ({
-    url: `${SITE_URL}/legal/${p.slug}`,
+    url: p.canonical_url || `${SITE_URL}/learn/${p.slug}`,
     lastModified: new Date(p.updated_at),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
@@ -76,6 +66,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...goalPages,
     ...cityPageUrls,
     ...learnPageUrls,
-    ...legalPageUrls,
   ]
 }
