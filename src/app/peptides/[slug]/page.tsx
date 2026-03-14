@@ -46,7 +46,7 @@ export default async function PeptidePage({ params }: Props) {
   if (!peptide) notFound()
 
   // Fetch related data in parallel
-  const [goalsRes, jurisdictionsRes, pageRes, learnPagesRes] = await Promise.all([
+  const [goalsRes, jurisdictionsRes, pageRes, learnPagesRes, relatedPeptidesRes, cityPagesRes] = await Promise.all([
     supabase
       .from('peptide_goals')
       .select('goal:goals(*)')
@@ -69,12 +69,28 @@ export default async function PeptidePage({ params }: Props) {
       .eq('status', 'published')
       .order('title')
       .limit(5),
+    supabase
+      .from('peptides')
+      .select('name, slug, summary')
+      .eq('status', 'published')
+      .neq('slug', slug)
+      .order('name')
+      .limit(6),
+    supabase
+      .from('pages')
+      .select('slug, title, meta_description')
+      .eq('page_type', 'city')
+      .eq('status', 'published')
+      .order('title')
+      .limit(5),
   ])
 
   const goals = (goalsRes.data || []).map((r: Record<string, unknown>) => r.goal).filter(Boolean) as { id: string; name: string; slug: string; description: string | null }[]
   const jurisdictions = jurisdictionsRes.data || []
   const page = pageRes.data
   const learnPages = learnPagesRes.data || []
+  const relatedPeptides = relatedPeptidesRes.data || []
+  const cityPages = cityPagesRes.data || []
 
   // Fetch page-specific data if page exists
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -203,6 +219,18 @@ export default async function PeptidePage({ params }: Props) {
       <RelatedEntities
         title="Related Goals"
         items={goals.map((g) => ({ name: g.name, slug: g.slug, href: `/goals/${g.slug}`, description: g.description }))}
+      />
+
+      {/* Related Peptides */}
+      <RelatedEntities
+        title="Compare Related Peptides"
+        items={relatedPeptides.map((p) => ({ name: p.name, slug: p.slug, href: `/peptides/${p.slug}`, description: p.summary }))}
+      />
+
+      {/* City Clinic Directory */}
+      <RelatedEntities
+        title="Find Peptide Clinics Near You"
+        items={cityPages.map((p) => ({ name: p.title, slug: p.slug, href: `/clinics/city/${p.slug}`, description: p.meta_description }))}
       />
 
       {/* Related Clinics */}
