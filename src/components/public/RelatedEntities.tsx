@@ -22,7 +22,7 @@ export default function RelatedEntities({ title, items }: { title: string; items
           >
             <h3 className="font-medium text-gray-900 group-hover:text-[#7f21f6] transition-colors">{item.name}</h3>
             {item.description && (
-              <p className="text-[13px] text-gray-400 mt-1.5 line-clamp-2 leading-relaxed">{item.description}</p>
+              <p className="text-sm text-gray-500 mt-1.5 line-clamp-2 leading-relaxed">{item.description}</p>
             )}
           </Link>
         ))}

@@ -19,13 +19,13 @@ export default function CitationList({ sources }: CitationListProps) {
       <h2 className="font-serif text-2xl text-gray-900 mb-6">Sources &amp; References</h2>
       <ol className="space-y-3">
         {sources.map((ps, i) => (
-          <li key={ps.source.id} className="flex gap-3 text-[13px]">
-            <span className="font-medium text-gray-300 flex-shrink-0 tabular-nums">[{i + 1}]</span>
+          <li key={ps.source.id} className="flex gap-3 text-sm">
+            <span className="font-medium text-gray-400 flex-shrink-0 tabular-nums">[{i + 1}]</span>
             <div className="leading-relaxed">
               <span className="font-medium text-gray-700">{ps.source.title}</span>
-              {ps.source.publication && <span className="text-gray-400"> — {ps.source.publication}</span>}
-              {ps.source.authors && <span className="text-gray-400"> ({ps.source.authors})</span>}
-              {ps.source.published_date && <span className="text-gray-300"> · {ps.source.published_date}</span>}
+              {ps.source.publication && <span className="text-gray-500"> — {ps.source.publication}</span>}
+              {ps.source.authors && <span className="text-gray-500"> ({ps.source.authors})</span>}
+              {ps.source.published_date && <span className="text-gray-400"> · {ps.source.published_date}</span>}
               {ps.source.url && (
                 <a href={ps.source.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[#7f21f6] hover:text-[#5a0fc0] ml-2 transition-colors">
                   View Source

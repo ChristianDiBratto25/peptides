@@ -20,7 +20,7 @@ export default function DisclaimerBanner({ disclaimers }: { disclaimers: Disclai
   return (
     <div className="space-y-3 mb-8">
       {disclaimers.map((d) => (
-        <div key={d.id} className={`border rounded-xl px-5 py-4 text-[13px] leading-relaxed ${colors[d.disclaimer_type] || colors.general}`}>
+        <div key={d.id} className={`border rounded-xl px-5 py-4 text-sm leading-relaxed ${colors[d.disclaimer_type] || colors.general}`}>
           <span className="mr-2 opacity-70">{icons[d.disclaimer_type] || icons.general}</span>
           {d.text}
         </div>
@@ -31,7 +31,7 @@ export default function DisclaimerBanner({ disclaimers }: { disclaimers: Disclai
 
 export function DefaultMedicalDisclaimer() {
   return (
-    <div className="bg-amber-50/80 border border-amber-200/60 rounded-xl px-5 py-4 text-[13px] text-amber-800 leading-relaxed mb-8">
+    <div className="bg-amber-50/80 border border-amber-200/60 rounded-xl px-5 py-4 text-sm text-amber-800 leading-relaxed mb-8">
       <span className="mr-2 opacity-70">⚕</span>
       <strong className="font-semibold">Disclaimer:</strong> This content is for educational and informational purposes only.
       It is not intended as medical advice or a substitute for professional medical consultation.

@@ -21,7 +21,7 @@ export default function FaqSection({ faqs }: { faqs: FaqItem[] }) {
               {faq.question}
               <svg className="ml-3 text-gray-300 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </summary>
-            <div className="px-6 pb-5 text-[14px] text-gray-500 leading-relaxed border-t border-gray-50">
+            <div className="px-6 pb-5 text-[15px] text-gray-600 leading-relaxed border-t border-gray-50">
               <div className="pt-4">{faq.answer}</div>
             </div>
           </details>

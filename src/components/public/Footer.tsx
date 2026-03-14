@@ -11,45 +11,45 @@ export default function Footer() {
                 <span className="text-white font-bold text-xs">P</span>
               </span>
               <span className="text-[15px] font-semibold tracking-[-0.02em] text-gray-900">
-                Peptide<span className="text-[#7f21f6]">Directory</span>
+                Peptide <span className="text-[#7f21f6]">Index</span>
               </span>
             </div>
-            <p className="text-[13px] leading-relaxed text-gray-400">
+            <p className="text-[13px] leading-relaxed text-gray-500">
               Your comprehensive guide to peptide therapy. Educational content only — not medical advice.
             </p>
           </div>
 
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-400 mb-4">Directory</h4>
+            <h4 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-4">Directory</h4>
             <ul className="space-y-3">
-              <li><Link href="/peptides" className="text-[14px] text-gray-500 hover:text-[#7f21f6] transition-colors">All Peptides</Link></li>
-              <li><Link href="/clinics" className="text-[14px] text-gray-500 hover:text-[#7f21f6] transition-colors">Clinics</Link></li>
-              <li><Link href="/goals" className="text-[14px] text-gray-500 hover:text-[#7f21f6] transition-colors">Browse by Goal</Link></li>
+              <li><Link href="/peptides" className="text-sm text-gray-600 hover:text-[#7f21f6] transition-colors">All Peptides</Link></li>
+              <li><Link href="/clinics" className="text-sm text-gray-600 hover:text-[#7f21f6] transition-colors">Clinics</Link></li>
+              <li><Link href="/goals" className="text-sm text-gray-600 hover:text-[#7f21f6] transition-colors">Browse by Goal</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-400 mb-4">Resources</h4>
+            <h4 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-4">Resources</h4>
             <ul className="space-y-3">
-              <li><Link href="/learn" className="text-[14px] text-gray-500 hover:text-[#7f21f6] transition-colors">Learn</Link></li>
+              <li><Link href="/learn" className="text-sm text-gray-600 hover:text-[#7f21f6] transition-colors">Learn</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-400 mb-4">Legal</h4>
+            <h4 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-4">Legal</h4>
             <ul className="space-y-3">
-              <li><Link href="/learn/disclaimer" className="text-[14px] text-gray-500 hover:text-[#7f21f6] transition-colors">Disclaimer</Link></li>
-              <li><Link href="/learn/privacy" className="text-[14px] text-gray-500 hover:text-[#7f21f6] transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/learn/disclaimer" className="text-sm text-gray-600 hover:text-[#7f21f6] transition-colors">Disclaimer</Link></li>
+              <li><Link href="/learn/privacy" className="text-sm text-gray-600 hover:text-[#7f21f6] transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-100 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[12px] text-gray-400 max-w-lg text-center md:text-left">
+          <p className="text-[13px] text-gray-500 max-w-lg text-center md:text-left">
             This website is for educational and informational purposes only. It is not intended as medical advice.
             Always consult a qualified healthcare provider.
           </p>
-          <p className="text-[12px] text-gray-300">&copy; {new Date().getFullYear()} PeptideDirectory</p>
+          <p className="text-[13px] text-gray-400">&copy; {new Date().getFullYear()} Peptide Index</p>
         </div>
       </div>
     </footer>

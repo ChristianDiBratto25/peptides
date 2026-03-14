@@ -117,7 +117,7 @@ export default async function LegalPage({ params }: Props) {
       <CitationList sources={pageSources} />
 
       {page.last_reviewed_at && (
-        <p className="text-xs text-gray-400 mt-8">
+        <p className="text-sm text-gray-500 mt-8">
           Last reviewed: {new Date(page.last_reviewed_at).toLocaleDateString()}
         </p>
       )}

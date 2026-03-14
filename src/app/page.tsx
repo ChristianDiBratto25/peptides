@@ -23,11 +23,11 @@ export default async function HomePage() {
       <section className="relative overflow-hidden bg-white">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#f3ecfe] via-white to-white" />
         <div className="relative max-w-4xl mx-auto px-4 py-24 md:py-32 text-center">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#7f21f6] mb-4">Research-Backed Peptide Intelligence</p>
+          <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[#7f21f6] mb-4">Research-Backed Peptide Intelligence</p>
           <h1 className="font-serif text-4xl md:text-6xl text-gray-900 mb-5 leading-[1.1]">
             Your Guide to<br />Peptide Therapy
           </h1>
-          <p className="text-[17px] text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed">
+          <p className="text-[17px] text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed">
             Verified clinics, educational resources, and research-backed compound profiles — all in one place.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -46,7 +46,7 @@ export default async function HomePage() {
         <section className="max-w-6xl mx-auto px-4 py-20">
           <div className="flex items-center justify-between mb-8">
             <h2 className="font-serif text-2xl text-gray-900">Featured Peptides</h2>
-            <Link href="/peptides" className="text-[13px] text-[#7f21f6] font-medium hover:text-[#5a0fc0] transition-colors">
+            <Link href="/peptides" className="text-sm text-[#7f21f6] font-medium hover:text-[#5a0fc0] transition-colors">
               View All
               <span className="ml-1">&rarr;</span>
             </Link>
@@ -65,7 +65,7 @@ export default async function HomePage() {
           <div className="max-w-6xl mx-auto px-4">
             <div className="flex items-center justify-between mb-8">
               <h2 className="font-serif text-2xl text-gray-900">Browse by Goal</h2>
-              <Link href="/goals" className="text-[13px] text-[#7f21f6] font-medium hover:text-[#5a0fc0] transition-colors">
+              <Link href="/goals" className="text-sm text-[#7f21f6] font-medium hover:text-[#5a0fc0] transition-colors">
                 View All
                 <span className="ml-1">&rarr;</span>
               </Link>
@@ -94,7 +94,7 @@ export default async function HomePage() {
               <Link
                 key={city}
                 href={`/clinics/city/${city.toLowerCase().replace(/\s+/g, '-')}`}
-                className="px-4 py-2 border border-gray-100 rounded-full text-[13px] text-gray-500 hover:bg-[#f3ecfe] hover:border-[#7f21f6]/30 hover:text-[#7f21f6] transition-all duration-200"
+                className="px-4 py-2 border border-gray-100 rounded-full text-sm text-gray-600 hover:bg-[#f3ecfe] hover:border-[#7f21f6]/30 hover:text-[#7f21f6] transition-all duration-200"
               >
                 {city}
               </Link>
@@ -106,8 +106,8 @@ export default async function HomePage() {
       {/* Disclaimer */}
       <section className="max-w-3xl mx-auto px-4 py-10">
         <div className="bg-gray-50/80 border border-gray-100 rounded-xl p-6 text-center">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-400 mb-2">Educational Content Only</p>
-          <p className="text-[13px] text-gray-400 leading-relaxed">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-gray-500 mb-2">Educational Content Only</p>
+          <p className="text-sm text-gray-500 leading-relaxed">
             Peptide Index provides educational and informational content only.
             Nothing on this site constitutes medical advice. Always consult a qualified healthcare provider before starting any treatment.
           </p>

@@ -143,7 +143,7 @@ export default async function PeptidePage({ params }: Props) {
       <h1 className="font-serif text-3xl md:text-4xl text-gray-900 mb-2">{peptide.name}</h1>
 
       {peptide.alternative_names?.length > 0 && (
-        <p className="text-gray-400 text-[13px] mb-4">
+        <p className="text-gray-500 text-sm mb-4">
           Also known as: {peptide.alternative_names.join(', ')}
         </p>
       )}
@@ -159,14 +159,14 @@ export default async function PeptidePage({ params }: Props) {
         <div className="bg-gray-50/80 border border-gray-100 rounded-xl p-5 mb-10 grid grid-cols-1 md:grid-cols-2 gap-5">
           {peptide.molecular_weight && (
             <div>
-              <span className="text-[11px] text-gray-400 uppercase tracking-[0.1em] font-medium">Molecular Weight</span>
+              <span className="text-[12px] text-gray-500 uppercase tracking-[0.1em] font-medium">Molecular Weight</span>
               <p className="font-medium text-gray-900 mt-0.5">{peptide.molecular_weight}</p>
             </div>
           )}
           {peptide.sequence && (
             <div>
-              <span className="text-[11px] text-gray-400 uppercase tracking-[0.1em] font-medium">Sequence</span>
-              <p className="font-mono text-[13px] text-gray-700 mt-0.5">{peptide.sequence}</p>
+              <span className="text-[12px] text-gray-500 uppercase tracking-[0.1em] font-medium">Sequence</span>
+              <p className="font-mono text-sm text-gray-700 mt-0.5">{peptide.sequence}</p>
             </div>
           )}
         </div>
@@ -174,7 +174,7 @@ export default async function PeptidePage({ params }: Props) {
 
       {/* Description */}
       {peptide.summary && (
-        <p className="text-[17px] text-gray-500 leading-relaxed mb-8">{peptide.summary}</p>
+        <p className="text-[17px] text-gray-600 leading-relaxed mb-8">{peptide.summary}</p>
       )}
 
       {/* CMS Page Content */}
@@ -183,21 +183,21 @@ export default async function PeptidePage({ params }: Props) {
       )}
 
       {peptide.description && !page?.content && (
-        <div className="text-[15px] text-gray-600 leading-relaxed whitespace-pre-line">{peptide.description}</div>
+        <div className="text-base text-gray-700 leading-relaxed whitespace-pre-line">{peptide.description}</div>
       )}
 
       {/* Jurisdictions */}
       {jurisdictions.length > 0 && (
         <section className="mt-12">
-          <h2 className="font-serif text-xl text-gray-900 mb-5">Legal Status by Jurisdiction</h2>
+          <h2 className="font-serif text-2xl text-gray-900 mb-5">Legal Status by Jurisdiction</h2>
           <div className="border border-gray-100 rounded-xl overflow-hidden">
-            <table className="w-full text-[13px]">
+            <table className="w-full text-sm">
               <thead className="bg-gray-50/80">
                 <tr>
-                  <th className="text-left px-5 py-3 text-[11px] uppercase tracking-[0.1em] text-gray-400 font-medium">Country</th>
-                  <th className="text-left px-5 py-3 text-[11px] uppercase tracking-[0.1em] text-gray-400 font-medium">State/Region</th>
-                  <th className="text-left px-5 py-3 text-[11px] uppercase tracking-[0.1em] text-gray-400 font-medium">Status</th>
-                  <th className="text-left px-5 py-3 text-[11px] uppercase tracking-[0.1em] text-gray-400 font-medium">Notes</th>
+                  <th className="text-left px-5 py-3 text-[12px] uppercase tracking-[0.1em] text-gray-500 font-medium">Country</th>
+                  <th className="text-left px-5 py-3 text-[12px] uppercase tracking-[0.1em] text-gray-500 font-medium">State/Region</th>
+                  <th className="text-left px-5 py-3 text-[12px] uppercase tracking-[0.1em] text-gray-500 font-medium">Status</th>
+                  <th className="text-left px-5 py-3 text-[12px] uppercase tracking-[0.1em] text-gray-500 font-medium">Notes</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
@@ -206,7 +206,7 @@ export default async function PeptidePage({ params }: Props) {
                     <td className="px-5 py-3 text-gray-700">{j.country}</td>
                     <td className="px-5 py-3 text-gray-700">{j.state || '—'}</td>
                     <td className="px-5 py-3"><Badge status={j.legal_status} /></td>
-                    <td className="px-5 py-3 text-gray-400">{j.notes || '—'}</td>
+                    <td className="px-5 py-3 text-gray-500">{j.notes || '—'}</td>
                   </tr>
                 ))}
               </tbody>
@@ -253,7 +253,7 @@ export default async function PeptidePage({ params }: Props) {
 
       {/* Last reviewed */}
       {page?.last_reviewed_at && (
-        <p className="text-xs text-gray-400 mt-8">
+        <p className="text-sm text-gray-500 mt-8">
           Last reviewed: {new Date(page.last_reviewed_at).toLocaleDateString()}
         </p>
       )}
